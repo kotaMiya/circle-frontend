@@ -1,56 +1,50 @@
 import React from 'react';
+import Expo, { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Colors from './constants/Colors';
 import { HomeScreen } from './src/screens/';
+// import { cachedFonts } from './helpers';
 
 EStyleSheet.build(Colors);
 
 
 export default class App extends React.Component {
 
-  render() {
-    return <HomeScreen />;
-  };
-
-  // static defaultProps = {
-  //   fetchCircles
-  // }
-
   // state = {
-  //   loading: false,
-  //   circles: []
+  //   fontLoaded: false
+  // };
+
+  // componentDidMount() {
+  //   this._loadAssetAsync();
   // }
 
-  // async componentDidMount() {
-  //   this.setState({ loading: true });
-  //   const data = await this.props.fetchCircles();
-  //   setTimeout(() => this.setState({ loading: false, circles: data.circles}), 2000);
+  // async _loadAssetAsync() {
+  //   const fontAssets = cachedFonts([
+  //     {
+  //       workSansRegular: require('./assets/fonts/WorkSans-Regular.ttf')
+  //     },
+  //     {
+  //       workSansLight: require('./assets/fonts/WorkSans-Light.ttf')
+  //     },
+  //     {
+  //       workSansSemiBold: require('./assets/fonts/WorkSans-SemiBold.ttf')
+  //     },
+  //     {
+  //       workSansMedium: require('./assets/fonts/WorkSans-Medium.ttf')
+  //     },
+  //   ]);
+
+  //   await Promise.all(fontAssets);
+
+  //   this.setState({ fontLoaded: true });
   // }
 
-  // render() {
-  //   if (this.state.loading) {
-  //     return (
-  //       <View style={styles.container}>
-  //         <ActivityIndicator size="large" />
-  //       </View>
-  //     );
-  //   }
-  //   return (
-  //     <View style={styles.container}>
-  //       <Text>Circles</Text>
-  //       {this.state.circles.map((circle, i) => (
-  //         <Text key={i}>{circle.title}</Text>
-  //       ))}
-  //     </View>
-  //   );
-  // }
-}
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+  render() {
+    // if (!this.state.fontLoaded) {
+    //   return <AppLoading />;
+    // }
+    return (
+      <HomeScreen />
+    );
+  };
+};

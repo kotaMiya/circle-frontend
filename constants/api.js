@@ -1,6 +1,9 @@
-// export const fetchCircles = () =>
-//     fetch('http://localhost:3000/api/circles')
-//     .then(res => res.json());
+// export const fetchGroupCircles = () =>
+//     fetch('http://localhost:3000/api/groups/5a9cf49f78bd5ac13e602eb9/circles')
+//     .then(res => function(res) {
+//         const { data } = res.json;
+//         data.circles;
+//     });
 
 
 import axios from 'axios';
@@ -13,12 +16,21 @@ class CircleApi {
     constructor() {
         this.groupId = fakeGroupId;
         this.path = `/groups/${this.groupId}/circles`;
+        this.circles = [];
     }
 
     async fetchGroupCircles() {
-        const { data } = await axios.get(this.path);
-
-        return data.circles;
+        await fetch('http://localhost:3000/api/groups/5a981b8f4554b144358742cf/circles')
+            .then(res => res.json())
+            .then(body => {
+                const data = body.circles;
+                console.log('from api', data);
+                this.circles = data;
+                return this.circles;
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 }
 

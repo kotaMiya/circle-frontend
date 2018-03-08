@@ -20,7 +20,7 @@ const styles = EStyleSheet.create({
         width: 175,
         marginRight: 5,
         marginLeft: 5,
-        backgroundColor: '#f73859'
+        backgroundColor: '$orangeColor'
     },
     circleCardTopContainer: {
         flex: 1,

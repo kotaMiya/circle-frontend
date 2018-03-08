@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { CircleApi } from '../../../constants/api';
 import { LoadingScreen } from '../../commons';
 import { CircleLists } from './components/CircleLists';
 import styles from './styles/HomeScreen';
+import Colors from '../../../constants/Colors';
 
 const circleApi = new CircleApi();
 
@@ -12,6 +14,13 @@ class HomeScreen extends Component {
 
     static defaultProps = {
         circleApi
+    }
+
+    static navigationOptions = {
+        headerStyle:  { backgroundColor: Colors.$orangeColor },
+        tabBarIcon: ({ tintColor }) => (
+                <MaterialCommunityIcons name="home-outline" size={25} color={tintColor}/>
+        )
     }
 
     state = {

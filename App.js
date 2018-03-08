@@ -2,7 +2,7 @@ import React from 'react';
 import Expo, { AppLoading } from 'expo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Colors from './constants/Colors';
-import { HomeScreen } from './src/screens/';
+import Root from './src/Root';
 // import { cachedFonts } from './helpers';
 
 EStyleSheet.build(Colors);
@@ -44,7 +44,7 @@ export default class App extends React.Component {
     //   return <AppLoading />;
     // }
     return (
-      <HomeScreen />
+      <Root />
     );
   };
 };

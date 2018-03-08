@@ -7,8 +7,17 @@
 
 
 import axios from 'axios';
+import { Platform } from 'react-native';
 
-axios.defaults.baseURL = 'http://localhost:3000/api';
+let url;
+
+if (Platform.OS == 'ios') {
+    url = 'http://localhost:3000/api';
+} else {
+    url = 'http://10.0.3.2:3000/api';
+}
+
+axios.defaults.baseURL = url;
 
 const fakeGroupId = '5a9cf49f78bd5ac13e602eb9';
 

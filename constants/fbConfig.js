@@ -1,3 +1,3 @@
 export default {
-    APP_ID: '923973127771429',
+    APP_ID: 'APP_ID',
 };

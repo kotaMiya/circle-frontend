@@ -29,7 +29,6 @@ class CircleApi {
         } catch (e) {
             throw e;
         }
-    
     }
 
     async createCircleEvents(args) {

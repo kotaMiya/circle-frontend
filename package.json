@@ -1,12 +1,29 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
+  "scripts": {},
   "dependencies": {
     "axios": "^0.18.0",
     "expo": "^25.0.0",
+    "firebase": "^5.0.4",
+    "moment": "^2.22.1",
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
+    "react-native-calendars": "^1.19.3",
+    "react-native-elements": "^0.19.1",
     "react-native-extended-stylesheet": "^0.8.1",
-    "react-navigation": "^1.5.0"
+    "react-native-modal-datetime-picker": "^5.1.0",
+    "react-navigation": "^1.5.0",
+    "react-navigation-redux-helpers": "^1.0.5",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-form": "^6.6.1",
+    "redux-persist": "4.9.1",
+    "redux-promise-middleware": "^5.0.0",
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^3.2.6"
+  },
+  "devDependencies": {
+    "redux-logger": "^3.0.6"
   }
 }

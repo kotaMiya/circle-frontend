@@ -4,15 +4,18 @@ const styles = EStyleSheet.create({
     root: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: '$blackBlueColor'
+        backgroundColor: '$whiteColor'
     },
     topContainer: {
-        flex: 1,
+        flex: 0.8,
         justifyContent: 'center',
-        alignItems: 'center',
+        marginLeft: '3%',
     },
     bottomContainer: {
-        flex: 0.9,
+        flex: 1.2,
+    },
+    addCircle: {
+        marginRight: 15
     }
 });
 

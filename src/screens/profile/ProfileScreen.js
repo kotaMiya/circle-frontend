@@ -1,24 +1,37 @@
 import React, { Component } from 'react';
-import { FontAwesome } from '@expo/vector-icons';
-import { View, Text } from 'react-native';
-import Colors from '../../../constants/Colors';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+
+import { logout } from '../auth/actions';
+
 
 class ProfileScreen extends Component {
 
-    static navigationOptions = {
-        headerStyle:  { backgroundColor: Colors.$orangeColor },
-        tabBarIcon: ({ tintColor }) => (
-                <FontAwesome name="user-o" size={25} color={tintColor}/>
-            )
+    // state = {
+    //     isLoggedIn: this.props.isLoggedIn
+    // }
+
+    onPressEvent = () => {
+        logout();
+        console.log(this.props.user.isLoggedIn);
     }
 
     render() {
         return (
             <View style={{ flex: 1 }}>
                 <Text>Profile Screen</Text>
+                <TouchableOpacity onPress={ () => this.onPressEvent() }>
+                    <Text>hello</Text>
+                </TouchableOpacity>
             </View>
         )
     }
 }
 
-export default ProfileScreen;
+export default connect(
+    state => ({
+        user: {
+            isLoggedIn: state.user.isLoggedIn
+        }
+    })
+)(ProfileScreen);

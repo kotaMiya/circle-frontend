@@ -1,6 +1,12 @@
 export default {
-    $blackColor: 'black',
-    $whiteColor: 'white',
-    $blackBlueColor: '#384259',
-    $orangeColor: '#F8823C',
+    $blackRock: '#363947',
+    $solitude: '#ECEEF1',
+    $orangeColor: '#F37B3F',
+    $whiteColor: '#fff',
+
+    // australia
+    $hintOfIcepack: '#c7ecee',
+    $coastalBreeze: '#dff9fb',
+    $pinkGlamour: '#ff7979',
+    $deepKoamaru: '#30336b',
 }

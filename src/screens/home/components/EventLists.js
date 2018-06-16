@@ -1,27 +1,28 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import styles from './styles/CircleLists';
+import styles from './styles/EventListsStyle';
 
 
-const CircleLists = ({ circles }) => {
+const EventLists = ({ events }) => {
+    console.log('from event lists', events);
     return ( 
         <View style={styles.root}>
             <View style={styles.titleContainer}>
-                <Text style={styles.title}>Circles</Text>
+                <Text style={styles.title}>Upcoming Events</Text>
             </View>
             <View style={styles.contentContainer}>
                 <ScrollView horizontal>
                 
-                    {circles.map((circle, i) => (
+                    {events.map((event, i) => (
                         <View key={i} style={styles.circleCard}>
                             <View style={styles.circleCardTopContainer}>
                                 <Text style={styles.circleCardTitle}>
-                                    {circle.title}
+                                    {event.title}
                                 </Text>
                             </View>
                             <View style={styles.circleCardBottomContainer}>
                                 <Text style={styles.circleCardName}>
-                                    {circle.group.name}
+                                    {event.circle.name}
                                 </Text>
                                 <Text style={styles.circleCardDate}>
                                     Mar 5 10:10
@@ -37,5 +38,5 @@ const CircleLists = ({ circles }) => {
 }
 
 export { 
-    CircleLists
+    EventLists
 };

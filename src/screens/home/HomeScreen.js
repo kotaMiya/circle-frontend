@@ -1,54 +1,51 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { CircleApi } from '../../../constants/api';
+import { View, Text, TouchableOpacity } from 'react-native';
+
+import { connect } from 'react-redux';
+
 import { LoadingScreen } from '../../commons';
-import { CircleLists } from './components/CircleLists';
+import { EventLists } from './components/EventLists';
+import { HomeCalendar } from './components/HomeCalendar';
+import { fetchMyEvents } from './actions';
+
 import styles from './styles/HomeScreen';
-import Colors from '../../../constants/Colors';
-
-const circleApi = new CircleApi();
 
 
-class HomeScreen extends Component {
 
-    static defaultProps = {
-        circleApi
-    }
-
-    static navigationOptions = {
-        headerStyle:  { backgroundColor: Colors.$orangeColor },
-        tabBarIcon: ({ tintColor }) => (
-                <MaterialCommunityIcons name="home-outline" size={25} color={tintColor}/>
-        )
-    }
-
-    state = {
-        loading: false,
-        circles: []
-    }
-
-
-    async componentDidMount() {        
-        this.setState({ loading: true });
-        const circlesTest = await this.props.circleApi.fetchGroupCircles(); 
-        const circles = circleApi.circles;
-        this.setState({ loading: false, circles });
+class HomeScreen extends Component {    
+    componentDidMount() {          
+        this.props.fetchMyEvents();
     }
 
     render() {
-        if (this.state.loading) {
+        console.log('from home screen', this.props);
+        const {
+            myEvents: {
+                isFetched,
+                data,
+                error,
+            },
+        } = this.props;
+        
+        if (!isFetched) {
             return (
                 <LoadingScreen />
             )
+        } else if (error.on) {
+            return (
+                <View>
+                    <Text>{ error.message }</Text>
+                </View>
+            )
         }
+     
         return (
             <View style={styles.root}>
                 <View style={styles.topContainer}>
-                    <Text>Home Screen</Text>
+                    <EventLists events={data} />
                 </View>
                 <View style={styles.bottomContainer}>
-                    <CircleLists circles={this.state.circles} />
+                    <HomeCalendar />
                 </View>
             </View>
         )
@@ -56,4 +53,9 @@ class HomeScreen extends Component {
 }
 
 
-export default HomeScreen;
+export default connect(
+    state => ({
+        myEvents: state.home.myEvents,
+      }),
+      { fetchMyEvents }
+)(HomeScreen) 

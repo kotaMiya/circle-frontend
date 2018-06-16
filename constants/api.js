@@ -1,10 +1,3 @@
-// export const fetchGroupCircles = () =>
-//     fetch('http://localhost:3000/api/groups/5a9cf49f78bd5ac13e602eb9/circles')
-//     .then(res => function(res) {
-//         const { data } = res.json;
-//         data.circles;
-//     });
-
 
 import axios from 'axios';
 import { Platform } from 'react-native';
@@ -19,30 +12,53 @@ if (Platform.OS == 'ios') {
 
 axios.defaults.baseURL = url;
 
-const fakeGroupId = '5a9cf49f78bd5ac13e602eb9';
+const fakeCircleId = '5b20cb473bcfa01189829b82';
 
 class CircleApi {
     constructor() {
-        this.groupId = fakeGroupId;
-        this.path = `/groups/${this.groupId}/circles`;
-        this.circles = [];
+        this.circleId = fakeCircleId;
+        this.path = `/circles/${this.circleId}/events`;
+        this.events = [];
     }
 
-    async fetchGroupCircles() {
-        await fetch('http://localhost:3000/api/groups/5a981b8f4554b144358742cf/circles')
-            .then(res => res.json())
-            .then(body => {
-                const data = body.circles;
-                console.log('from api', data);
-                this.circles = data;
-                return this.circles;
-            })
-            .catch(err => {
-                console.log(err);
-            })
+    async fetchCircleEvents() {
+
+        try {
+            const { data } = await axios.get(this.path);
+            return data.events;
+        } catch (e) {
+            throw e;
+        }
+    
+    }
+
+    async createCircleEvents(args) {
+        try {
+            const res = await axios.post(`${this.path}/new`, { ...args });
+            return res;
+        } catch(e) {
+            throw e;
+        }
     }
 }
 
 export {
-    CircleApi
+    CircleApi,
 };
+
+class UserApi {
+    constructor() {
+        this.path = '/users';
+    }
+
+    async login(args) {
+        try {
+            const { data } = await axios.post(`${this.path}/auth`, args);
+            return data;
+        } catch(e) {
+            throw e;
+        }
+    }
+}
+
+export const User = new UserApi();
